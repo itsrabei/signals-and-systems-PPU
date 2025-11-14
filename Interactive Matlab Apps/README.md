@@ -124,5 +124,5 @@ If you encounter issues:
 ## Related Resources
 
 - [Lectures/README.md](../Lectures/README.md) - Lecture notes documentation
-- [Solved Examples/README.md](../Solved Examples/README.md) - Worked examples documentation
+- [Solved Examples/README.md](../Solved%20Examples/README.md) - Worked examples documentation
 

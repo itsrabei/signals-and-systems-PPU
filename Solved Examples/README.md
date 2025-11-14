@@ -125,7 +125,7 @@ Examples follow the same style conventions as the main lectures:
 ## Related Resources
 
 - [Lectures/README.md](../Lectures/README.md) - Main lecture notes
-- [Interactive Matlab Apps/README.md](../Interactive Matlab Apps/README.md) - Interactive applications
+- [Interactive Matlab Apps/README.md](../Interactive%20Matlab%20Apps/README.md) - Interactive applications
 
 ## Authors
 

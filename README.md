@@ -40,19 +40,19 @@ signals-and-systems-PPU/
 
 ### Lectures
 
-See the <Lectures/README.md> for detailed instructions on compiling and using the lecture notes.
+See the [Lectures/README.md](Lectures/README.md) for detailed instructions on compiling and using the lecture notes.
 
 ### MATLAB Applications
 
 Interactive MATLAB applications are organized by lecture in the `Interactive Matlab Apps/` directory. Each application is designed to demonstrate key concepts from the corresponding lecture. Applications include interactive signal generators, convolution simulators, Fourier series analyzers, and spectral analysis tools.
 
-See the [Interactive Matlab Apps/README.md](Interactive Matlab Apps/README.md) for detailed information about available applications and usage instructions.
+See the [Interactive Matlab Apps/README.md](Interactive%20Matlab%20Apps/README.md) for detailed information about available applications and usage instructions.
 
 ### Solved Examples
 
 Worked examples and practice problems are provided in the `Solved Examples/` directory, organized by lecture number. Each example file includes step-by-step solutions with accompanying figures.
 
-See the [Solved Examples/README.md](Solved Examples/README.md) for compilation instructions and content overview.
+See the [Solved Examples/README.md](Solved%20Examples/README.md) for compilation instructions and content overview.
 
 ## License
 
@@ -80,4 +80,4 @@ itstefo@gmail.com
 
 ***
 
-**Note**: For lecture compilation instructions, see <Lectures/README.md>.
+**Note**: For lecture compilation instructions, see [Lectures/README.md](Lectures/README.md).
