@@ -1,0 +1,26 @@
+\begin{tikzpicture}
+	\begin{axis}[
+		width=12cm,
+		height=7cm,
+		title={Impulse Response $h(t) = u(t)$},
+		xlabel={$t$},
+		ylabel={$h(t)$},
+		axis lines=middle,
+		xmin=-2.5, xmax=3.5,
+		ymin=0, ymax=1.5,
+		xtick={-2, -1, 1, 2, 3},
+		ytick={1},
+		grid=major,
+		grid style={line width=.1pt, draw=gray!30},
+		]
+		
+		% Draw the two parts of the function
+		\draw[red, very thick] (axis cs:-2.5, 0) -- (axis cs:0, 0);
+		\draw[red, very thick] (axis cs:0, 1) -- (axis cs:3.5, 1);
+		
+		% Mark the discontinuity at t=0
+		\addplot[only marks, red, mark=*, mark size=2pt] coordinates {(0,1)};
+		\addplot[only marks, red, mark=o, mark size=2pt, fill=white] coordinates {(0,0)};
+		
+	\end{axis}
+\end{tikzpicture}

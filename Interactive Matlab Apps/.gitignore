@@ -1,0 +1,65 @@
+# MATLAB .gitignore
+# For Signals and Systems - PPU Repository
+
+# MATLAB
+*.asv
+*.m~ 
+*.swp
+*~
+
+# MATLAB Compiler
+*.ctf
+
+# MATLAB Cache
+*.cache
+*.mlapp
+
+# MATLAB Project Files
+*.prj
+*.slxc
+*.autosave
+
+# Simulink
+*.slprj/
+*.autosave
+*.slxc
+
+# MATLAB Generated Files
+html/
+*.html
+doc/
+*.pdf
+
+# OS Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+
+# Temporary Files
+*.tmp
+*.temp
+*.log
+
+# Audio/Media (if any remain)
+*.mp3
+*.wav
+*.flac
+
+# Compiled/Binary Files
+*.mexw64
+*.mexw32
+*.mexa64
+*.mexmaci64
+
+# Test Output
+test_results/
+*.fig
+
+# User-specific
+*.userpath
+*.matlab.prf
+

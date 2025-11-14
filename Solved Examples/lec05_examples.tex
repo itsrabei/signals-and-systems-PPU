@@ -1,0 +1,198 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage{geometry}
+
+\geometry{a4paper, margin=1in}
+
+% Define example environment
+\newenvironment{example}[1]{
+    \begin{trivlist}
+    \item[\textbf{Example:}] #1
+    \vspace{0.5em}
+}{
+    \end{trivlist}
+    \vspace{1em}
+}
+
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{patterns,decorations.pathreplacing}
+
+\title{Lecture 5 Examples}
+\author{Signals and Systems Course}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{example}[1. Continuous-Time Convolution: Exponential and Unit Step]
+\textbf{Problem:}
+Find the convolution $y(t) = x(t) * h(t)$ where:
+\begin{align}
+    x(t) &= u(t) \quad \text{(unit step function)} \\
+    h(t) &= e^{-at} u(t), \quad a > 0 \quad \text{(exponential impulse response)}
+\end{align}
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \resizebox{!}{5cm}{ \input{figures/lec05_examples/unit_step_ct.tex}}
+        \caption{Input signal $x(t) = u(t)$}
+    \end{minipage}\hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering
+      \resizebox{!}{5cm}{   \input{figures/lec05_examples/exponential_impulse.tex}}
+        \caption{Impulse response $h(t) = e^{-at} u(t)$}
+    \end{minipage}
+\end{figure}
+
+\textbf{Solution:}
+
+$$y(t) = \int_{0}^{t} e^{-a(t-\tau)} d\tau = e^{-at} \int_{0}^{t} e^{a\tau} d\tau = \frac{1 - e^{-at}}{a}$$
+
+For $t < 0$: $y(t) = 0$
+
+\textbf{Answer:}
+$$y(t) = \frac{1 - e^{-at}}{a} u(t)$$
+
+\begin{figure}[H]
+    \centering
+    \input{figures/lec05_examples/step_response.tex}
+    \caption{Step response $y(t) = x(t) * h(t)$}
+\end{figure}
+\end{example}
+
+\vspace{0.5em}
+\hrule
+\vspace{0.5em}
+
+\begin{example}[2. Convolution of Two-Sided and One-Sided Signals]
+\textbf{Problem:}
+Find the convolution $y(t) = x(t) * h(t)$ where:
+\begin{align}
+    x(t) &= e^{-|t|} \quad \text{(two-sided exponential)} \\
+    h(t) &= u(t) \quad \text{(unit step function)}
+\end{align}
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \resizebox{!}{5cm}{\input{figures/lec05_examples/two_sided_exponential.tex}}
+        \caption{Input signal $x(t) = e^{-|t|}$}
+    \end{minipage}\hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering
+       \resizebox{!}{5cm}{ \input{figures/lec05_examples/unit_step_ct2.tex}}
+        \caption{Impulse response $h(t) = u(t)$}
+    \end{minipage}
+\end{figure}
+
+\textbf{Solution:}
+
+$$y(t) = \int_{-\infty}^{t} e^{-|\tau|} d\tau$$
+
+\textbf{Case 1:} $t < 0$
+$$y(t) = \int_{-\infty}^{t} e^{\tau} d\tau = e^{t}$$
+
+\textbf{Case 2:} $t \geq 0$
+$$y(t) = \int_{-\infty}^{0} e^{\tau} d\tau + \int_{0}^{t} e^{-\tau} d\tau = 1 + (1 - e^{-t}) = 2 - e^{-t}$$
+
+\textbf{Answer:}
+$$y(t) = \begin{cases}
+    e^{t} & \text{for } t < 0 \\
+    2 - e^{-t} & \text{for } t \geq 0
+\end{cases}$$
+
+\begin{figure}[H]
+    \centering
+    \input{figures/lec05_examples/two_sided_convolution.tex}
+    \caption{Convolution result $y(t) = x(t) * h(t)$}
+\end{figure}
+\end{example}
+
+\vspace{0.5em}
+\hrule
+\vspace{0.5em}
+
+\begin{example}[3. Convolution with Rectangular Pulse]
+\textbf{Problem:}
+Find the convolution $y(t) = x(t) * h(t)$ where:
+\begin{align}
+    x(t) &= e^{-at} u(t), \quad a > 0 \\
+    h(t) &= \begin{cases}
+        1 & \text{for } 0 \leq t \leq T \\
+        0 & \text{otherwise}
+    \end{cases}
+\end{align}
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.45\textwidth}
+        \centering
+         \resizebox{!}{5cm}{\input{figures/lec05_examples/exponential_input.tex}}
+        \caption{Input signal $x(t) = e^{-at} u(t)$}
+    \end{minipage}\hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \resizebox{!}{5cm}{ \input{figures/lec05_examples/rectangular_pulse.tex}}
+        \caption{Impulse response $h(t)$ (rectangular pulse)}
+    \end{minipage}
+\end{figure}
+
+\textbf{Solution:}
+
+$$y(t) = \int_{\max(0, t-T)}^{t} e^{-a\tau} d\tau$$
+
+\textbf{Case 1:} $t < 0$ → $y(t) = 0$
+
+\textbf{Case 2:} $0 \leq t \leq T$
+$$y(t) = \int_{0}^{t} e^{-a\tau} d\tau = \frac{1 - e^{-at}}{a}$$
+
+\textbf{Case 3:} $t > T$
+$$y(t) = \int_{t-T}^{t} e^{-a\tau} d\tau = \frac{e^{-a(t-T)} - e^{-at}}{a} = \frac{e^{-at}(e^{aT} - 1)}{a}$$
+
+\textbf{Answer:}
+$$y(t) = \begin{cases}
+    0 & \text{for } t < 0 \\
+    \frac{1 - e^{-at}}{a} & \text{for } 0 \leq t \leq T \\
+    \frac{e^{-at}(e^{aT} - 1)}{a} & \text{for } t > T
+\end{cases}$$
+
+\begin{figure}[H]
+    \centering
+    \input{figures/lec05_examples/rectangular_convolution.tex}
+    \caption{Convolution result $y(t) = x(t) * h(t)$}
+\end{figure}
+\end{example}
+
+\vspace{0.5em}
+\hrule
+\vspace{0.5em}
+
+\begin{example}[4. Convolution with Impulse Train]
+\textbf{Problem:}
+Find $y(t) = x(t) * h(t)$ where $x(t) = \cos(\omega_0 t)$ and $h(t) = \sum_{n=-\infty}^{\infty} \delta(t - nT)$.
+
+\textbf{Solution:}
+Using sifting property: $y(t) = \sum_{n=-\infty}^{\infty} \cos(\omega_0 (t - nT))$
+
+Using the identity $\cos(A-B) = \cos A \cos B + \sin A \sin B$:
+$$y(t) = \sum_{n=-\infty}^{\infty} [\cos(\omega_0 t)\cos(\omega_0 nT) + \sin(\omega_0 t)\sin(\omega_0 nT)]$$
+
+$$= \cos(\omega_0 t) \sum_{n=-\infty}^{\infty} \cos(\omega_0 nT) + \sin(\omega_0 t) \sum_{n=-\infty}^{\infty} \sin(\omega_0 nT)$$
+
+Since $\sum_{n=-\infty}^{\infty} \sin(\omega_0 nT) = 0$ (odd symmetry):
+$$y(t) = \cos(\omega_0 t) \sum_{n=-\infty}^{\infty} \cos(\omega_0 nT)$$
+
+\textbf{Answer:} $y(t) = \cos(\omega_0 t) \sum_{n=-\infty}^{\infty} \cos(\omega_0 nT)$
+\end{example}
+
+\end{document}

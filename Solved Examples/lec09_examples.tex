@@ -1,0 +1,95 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage{geometry}
+
+\geometry{a4paper, margin=1in}
+
+% Define example environment
+\newenvironment{example}[1]{
+    \begin{trivlist}
+    \item[\textbf{Example:}] #1
+    \vspace{0.5em}
+}{
+    \end{trivlist}
+    \vspace{1em}
+}
+
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{patterns,decorations.pathreplacing}
+
+\title{Lecture 9 Examples}
+\author{Signals and Systems Course}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{example}[1. DTFS Coefficients for a Sinusoidal Signal]
+\textbf{Problem:}
+Find the DTFS coefficients $a_k$ for:
+$$x(n) = \sin\left(\frac{6\pi}{5}n\right)$$
+
+\textbf{Solution:}
+
+\textbf{Fundamental period:} $N = 5$ (since $\frac{6\pi}{5} = 3 \cdot \frac{2\pi}{5}$)
+
+\textbf{Express as complex exponentials:}
+$$x(n) = \frac{1}{2j}\left(e^{j3\omega_N n} - e^{-j3\omega_N n}\right)$$
+
+where $\omega_N = \frac{2\pi}{5}$
+
+\textbf{Answer:}
+$$a_k = \begin{cases} 
+-j/2, & k = 3 + 5m \\ 
+j/2, & k = 2 + 5m \\
+0, & \text{otherwise}
+\end{cases}$$
+
+\begin{figure}[H]
+\centering
+\input{figures/lec09_examples/signal_plot.tex}
+\caption{The discrete-time signal $x(n)$, which is periodic with period $N=5$.}
+\label{fig:signal_plot}
+\end{figure}
+\end{example}
+
+\vspace{0.5em}
+\hrule
+\vspace{0.5em}
+\newpage
+\begin{example}[2. DTFS of a Periodic Signal from its Graph]
+\textbf{Problem:}
+Determine the DTFS coefficients $a_k$ for the periodic signal $x(n)$ shown in Figure \ref{fig:signal}.
+
+\begin{figure}[H]
+\centering
+\input{figures/lec09_examples/signal.tex}
+\caption{The periodic discrete-time signal $x(n)$.}
+\label{fig:signal}
+\end{figure}
+
+\textbf{Solution:}
+
+\textbf{Fundamental period:} $N = 6$
+
+\textbf{DTFS analysis formula:}
+$$a_k = \frac{1}{6} \sum_{n=-1}^{4} x(n) e^{-jk(\pi/3)n}$$
+
+\textbf{Non-zero samples:} $x(-1)=2$, $x(0)=1$, $x(1)=2$
+
+$$a_k = \frac{1}{6} \left[ 2e^{jk\pi/3} + 1 + 2e^{-jk\pi/3} \right]$$
+
+$$= \frac{1}{6} \left[ 1 + 4\cos(k\pi/3) \right]$$
+
+\textbf{Answer:}
+$$a_k = \frac{1}{6} + \frac{2}{3}\cos\left(\frac{k\pi}{3}\right)$$
+\end{example}
+
+\end{document}

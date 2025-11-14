@@ -1,0 +1,46 @@
+% In the preamble:
+% \usetikzlibrary{positioning,arrows.meta}
+
+\begin{tikzpicture}[
+	auto,
+	node distance=1.5cm and 2cm, % vertical and horizontal distances via positioning
+	>=Stealth, % requires arrows.meta
+	block/.style={draw, rectangle, minimum height=3em, minimum width=4em},
+	adder/.style={draw, circle, inner sep=0pt, minimum size=0.7cm}
+	]
+	
+	% --- NODES ---
+	\node (input) {$x[n]$};
+	\coordinate[right=1cm of input] (branch);
+	\node[block, right=of branch] (gain) {$2$};
+	\node[block, below=of gain] (sq1) {$(\cdot)^2$};
+	
+	% Summing junction placed to the right of the upper path
+	\node[adder, right=2cm of gain] (sum) {};
+	
+	\node[block, right=1.5cm of sum] (sq2) {$(\cdot)^2$};
+	\node[right=1.5cm of sq2] (output) {$y[n]$};
+	
+	% --- CONNECTIONS ---
+	\draw[->] (input) -- (branch);
+	\draw[->] (branch) |- (gain.west);
+	\draw[->] (branch) |- (sq1.west);
+	
+	% Feed the adder cleanly
+	\draw[->] (gain.east) -- (sum.west);
+	\draw[->] (sq1.east) -| (sum.south);
+	
+	% Output path
+	\draw[->] (sum.east) -- (sq2.west);
+	\draw[->] (sq2.east) -- (output);
+	
+	% --- LABELS ---
+	% Place + at the upper input and - at the lower input of the adder
+	\node[above=2pt of sum.north] {$+$};
+	\node[left=2pt of sum.south] {$-$};
+	
+	% Optional: system equation
+	\node[below=1.5cm of sq1, text width=8cm, align=center] (equation)
+	{System Equation: $y[n] = \left(2x[n] - (x[n])^2\right)^2$};
+	
+\end{tikzpicture}

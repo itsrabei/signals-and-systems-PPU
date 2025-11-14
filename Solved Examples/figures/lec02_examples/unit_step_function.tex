@@ -1,0 +1,40 @@
+\begin{tikzpicture}
+	\begin{axis}[
+		% Set the overall style
+		width=12cm,
+		height=7cm,
+		% Title with the formal piecewise definition
+		title={Continuous-Time Unit Step Function $u(t) = 
+			\begin{cases} 
+				1, & t \ge 0 \\
+				0, & t < 0
+			\end{cases}$
+		},
+		% Axis labels
+		xlabel={$t$},
+		ylabel={$u(t)$},
+		% Position axes at the origin
+		axis lines=middle,
+		% Set axis limits
+		xmin=-2.5, xmax=3.5,
+		ymin=0, ymax=1.5,
+		% Set ticks at key points
+		xtick={-2, -1, 1, 2, 3},
+		ytick={1},
+		% Add a grid
+		grid=major,
+		grid style={line width=.1pt, draw=gray!30},
+		]
+		
+		% Draw the two parts of the function
+		\draw[blue, very thick] (axis cs:-2.5, 0) -- (axis cs:0, 0);
+		\draw[blue, very thick] (axis cs:0, 1) -- (axis cs:3.5, 1);
+		
+		% Mark the discontinuity at t=0 precisely
+		% A filled circle at (0,1) indicates u(0) = 1
+		\addplot[only marks, blue, mark=*, mark size=2pt] coordinates {(0,1)};
+		% An open circle at (0,0) indicates the function jumps from here
+		\addplot[only marks, blue, mark=o, mark size=2pt, fill=white] coordinates {(0,0)};
+		
+	\end{axis}
+\end{tikzpicture}

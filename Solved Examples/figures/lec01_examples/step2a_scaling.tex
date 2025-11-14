@@ -1,0 +1,41 @@
+\begin{tikzpicture}
+	\begin{axis}[
+		% Set the overall style
+		width=13cm,
+		height=8cm,
+		% Title and labels
+		title={Time Scaling (Compression) by a Factor of 3},
+		xlabel={$t$},
+		ylabel={Signal Amplitude},
+		% Position axes at the origin
+		axis lines=middle,
+		% Set axis limits
+		xmin=-2.8, xmax=1.2,
+		ymin=0, ymax=1.5,
+		% Set ticks at key fractional points
+		xtick={-2.333, -1.333, -0.778, -0.444, 0.222, 0.667},
+		% Use LaTeX to display tick labels as fractions
+		xticklabels={$-\frac{7}{3}$, $-\frac{4}{3}$, $-\frac{7}{9}$, $-\frac{4}{9}$, $\frac{2}{9}$, $\frac{2}{3}$},
+		ytick={1},
+		% Add a grid
+		grid=major,
+		grid style={line width=.1pt, draw=gray!30},
+		% Position the legend
+		legend pos=north west,
+		legend cell align={left},
+		]
+		
+		% Plot the pre-scaled signal (dashed blue)
+		\addplot[blue, dashed, thick] coordinates {
+			(-2.8,0) (-7/3,0) (-7/3,1) (-4/3,1) (2/3,0) (1.2,0)
+		};
+		\addlegendentry{$x(t + \frac{4}{3})$ (Original)};
+		
+		% Plot the time-scaled (compressed) signal (solid red)
+		\addplot[red, very thick] coordinates {
+			(-2.8,0) (-7/9,0) (-7/9,1) (-4/9,1) (2/9,0) (1.2,0)
+		};
+		\addlegendentry{$x(3t + \frac{4}{3})$ (Compressed)};
+		
+	\end{axis}
+\end{tikzpicture}

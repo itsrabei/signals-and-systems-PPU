@@ -1,0 +1,39 @@
+\begin{tikzpicture}
+	\begin{axis}[
+		% Set the overall style
+		width=12cm,
+		height=7cm,
+		% Title with the formal piecewise definition
+		title={Triangular Pulse Signal $x(t) = 
+			\begin{cases} 
+				t, & 0 \le t \le 1 \\
+				2-t, & 1 < t \le 2 \\
+				0, & \text{otherwise} 
+			\end{cases}$
+		},
+		% Axis labels
+		xlabel={$t$},
+		ylabel={$x(t)$},
+		% Position axes at the origin
+		axis lines=middle,
+		% Set axis limits for good spacing
+		xmin=-1, xmax=3.5,
+		ymin=0, ymax=1.2,
+		% Set ticks at key points
+		xtick={1, 2},
+		ytick={1},
+		yticklabels={$1$},
+		% Add a grid
+		grid=major,
+		grid style={line width=.1pt, draw=gray!30},
+		]
+		
+		% Draw the entire signal shape using a single command
+		\draw[blue, very thick]
+		(axis cs:-1, 0) -- (axis cs:0, 0)   % Zero before t=0
+		-- (axis cs:1, 1)                   % Ramp up to the peak at t=1
+		-- (axis cs:2, 0)                   % Ramp down to zero at t=2
+		-- (axis cs:3.5, 0);                 % Zero after t=2
+		
+	\end{axis}
+\end{tikzpicture}

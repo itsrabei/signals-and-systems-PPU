@@ -1,0 +1,235 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage{geometry}
+
+\geometry{a4paper, margin=1in}
+
+% Define example environment
+\newenvironment{example}[1]{
+    \begin{trivlist}
+    \item[\textbf{Example:}] #1
+    \vspace{0.5em}
+}{
+    \end{trivlist}
+    \vspace{1em}
+}
+
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{patterns,decorations.pathreplacing,shapes.geometric,arrows.meta,positioning}
+
+\title{Lecture 3 Examples}
+\author{Signals and Systems Course}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{example}[1. Determining if a System has Memory]
+\textbf{Problem:}
+Determine whether the system $y[n] = (2x[n] - x[n]^2)^2$ is memoryless.
+
+\begin{figure}[H]
+    \centering
+    \input{figures/lec03_examples/memory_block_diagram.tex}
+    \caption{Block diagram representation of the system.}
+    \label{fig:block_diagram}
+\end{figure}
+
+\textbf{Solution:}
+
+The output $y[n]$ depends only on the current input $x[n]$ at time $n$. There is no dependence on past or future values.
+
+\textbf{Answer:} The system is memoryless.
+\end{example}
+
+\vspace{0.5em}
+\hrule
+\vspace{0.5em}
+
+\begin{example}[2. System Properties - Memory and Invertibility]
+\textbf{Problem:}
+Determine which systems have memory and which are invertible:
+\begin{enumerate}
+    \item $y(t) = x(t) + 1$ (continuous-time)
+    \item $y[n] = x[n-1]$ (discrete-time)
+    \item $y(t) = x^2(t)$
+\end{enumerate}
+
+\textbf{Solution:}
+\begin{itemize}
+    \item System 1: Memoryless (depends only on current input)
+    \item System 2: Has memory (depends on past input)
+    \item System 3: Not invertible ($x_1 = 2$ and $x_2 = -2$ both give $y = 4$)
+\end{itemize}
+
+\textbf{Answer:} System 1 is memoryless; System 2 has memory; System 3 is not invertible.
+\end{example}
+
+\vspace{0.5em}
+\hrule
+\vspace{0.5em}
+
+\begin{example}[3. System Invertibility Analysis]
+\textbf{Problem:}
+Determine the invertibility of:
+\begin{enumerate}
+    \item $y[n] = 2x[n]$ (discrete-time)
+    \item $y(t) = \int_{-\infty}^{t} x(\tau) d\tau$ (continuous-time integrator)
+    \item $y[n] = x^2[n]$ (discrete-time)
+\end{enumerate}
+
+\textbf{Solution:}
+\begin{itemize}
+    \item System 1: Invertible ($x[n] = y[n]/2$)
+    \item System 2: Invertible ($x(t) = dy(t)/dt$)
+    \item System 3: Not invertible ($x_1 = 3$ and $x_2 = -3$ both give $y = 9$)
+\end{itemize}
+
+\textbf{Answer:} Systems 1 and 2 are invertible; System 3 is not invertible.
+\end{example}
+
+\vspace{0.5em}
+\hrule
+\vspace{0.5em}
+
+\begin{example}[4. System Causality Analysis]
+\textbf{Problem:}
+Determine the causality of:
+\begin{enumerate}
+    \item $y[n] = x[n] + x[n-1]$ (discrete-time)
+    \item $y[n] = x[n+1]$ (discrete-time)
+    \item $y(t) = x(t-2)$ (continuous-time)
+    \item $y(t) = x(t+1)$ (continuous-time)
+\end{enumerate}
+
+\textbf{Solution:}
+\begin{itemize}
+    \item System 1: Causal (current and past inputs)
+    \item System 2: Non-causal (future input)
+    \item System 3: Causal (past input)
+    \item System 4: Non-causal (future input)
+\end{itemize}
+
+\textbf{Answer:} Systems 1 and 3 are causal; Systems 2 and 4 are non-causal.
+\end{example}
+
+\vspace{0.5em}
+\hrule
+\vspace{0.5em}
+
+\begin{example}[5. Testing for Time-Invariance]
+\textbf{Problem:}
+Determine if $y(t) = \sin[x(t)]$ is time-invariant.
+
+\textbf{Solution:}
+Test: If $x_1(t) \to y_1(t) = \sin[x_1(t)]$, then $x_1(t-t_0) \to y_2(t) = \sin[x_1(t-t_0)]$
+Compare: $y_1(t-t_0) = \sin[x_1(t-t_0)] = y_2(t)$
+
+\textbf{Answer:} Time-invariant (sine operates on instantaneous values)
+\end{example}
+
+\vspace{0.5em}
+\hrule
+\vspace{0.5em}
+
+\begin{example}[6. Testing a System for Time-Invariance]
+\textbf{Problem:}
+Determine if $y[n] = n x[n]$ is time-invariant.
+
+\textbf{Solution:}
+Test: If $x_1[n] \to y_1[n] = n x_1[n]$, then $x_1[n-n_0] \to y_2[n] = n x_1[n-n_0]$
+Compare: $y_1[n-n_0] = (n-n_0) x_1[n-n_0] \neq y_2[n] = n x_1[n-n_0]$
+
+\textbf{Answer:} Time-varying (scaling factor depends on time index $n$)
+\end{example}
+
+\vspace{0.5em}
+\hrule
+\vspace{0.5em}
+
+\begin{example}[7. Testing a Time-Scaling System for Time-Invariance]
+\textbf{Problem:}
+Determine if $y[n] = x[2n]$ (decimator) is time-invariant.
+
+\textbf{Solution:}
+Test: If $x_1[n] \to y_1[n] = x_1[2n]$, then $x_1[n-n_0] \to y_2[n] = x_1[2n-n_0]$
+Compare: $y_1[n-n_0] = x_1[2n-2n_0] \neq y_2[n] = x_1[2n-n_0]$
+
+\textbf{Answer:} Time-varying (decimation samples at specific indices that change with shift)
+\end{example}
+
+\vspace{0.5em}
+\hrule
+\vspace{0.5em}
+
+\begin{example}[8. Proving Linearity for an Ideal Sampling System]
+\textbf{Problem:}
+Determine if $y(t) = \sum_{n=-\infty}^{\infty} x(t) \delta(t - nT)$ is linear.
+
+\textbf{Solution:}
+\textbf{Homogeneity:} $\mathcal{T}\{\alpha x(t)\} = \sum_{n=-\infty}^{\infty} \alpha x(t) \delta(t - nT) = \alpha \sum_{n=-\infty}^{\infty} x(t) \delta(t - nT) = \alpha y(t)$
+
+\textbf{Additivity:} $\mathcal{T}\{x_1(t) + x_2(t)\} = \sum_{n=-\infty}^{\infty} [x_1(t) + x_2(t)] \delta(t - nT) = y_1(t) + y_2(t)$
+
+\textbf{Answer:} Linear (satisfies both homogeneity and additivity)
+\end{example}
+
+\vspace{0.5em}
+\hrule
+\vspace{0.5em}
+
+\begin{example}[9. Testing a System for Linearity]
+\textbf{Problem:}
+Determine if $y[n] = |x[n]|$ is linear.
+
+\textbf{Solution:}
+\textbf{Additivity:} $|x_1[n] + x_2[n]| \neq |x_1[n]| + |x_2[n]|$ (e.g., $|1 + (-1)| = 0 \neq 2 = |1| + |-1|$)
+
+\textbf{Homogeneity:} $|\alpha x[n]| = |\alpha| \cdot |x[n]| \neq \alpha |x[n]|$ when $\alpha < 0$
+
+\textbf{Answer:} Non-linear (fails both additivity and homogeneity)
+\end{example}
+
+\vspace{0.5em}
+\hrule
+\vspace{0.5em}
+
+\begin{example}[10. Systems Exhibiting Partial Linearity Properties]
+\textbf{Problem:}
+Determine linearity of:
+\begin{enumerate}
+    \item $y[n] = \frac{x[n]x[n-1]}{x[n+1]}$
+    \item $y[n] = \text{Re}\{x[n]\}$
+\end{enumerate}
+
+\textbf{Solution:}
+\textbf{System 1:} Homogeneous ($\alpha$ cancels out) but not additive (nonlinear operations)
+\textbf{System 2:} Additive but not homogeneous (fails for complex $\alpha$)
+
+\textbf{Answer:} Both non-linear (need both additivity and homogeneity)
+\end{example}
+
+\vspace{0.5em}
+\hrule
+\vspace{0.5em}
+
+\begin{example}[11. Stability Analysis of a Continuous-Time Integrator]
+\textbf{Problem:}
+Determine if $y(t) = \int_{-\infty}^{t} x(\tau) \,d\tau$ is stable.
+
+\textbf{Solution:}
+\textbf{Impulse response:} $h(t) = u(t)$ (apply $\delta(t)$ as input)
+
+\textbf{Stability test:} $\int_{-\infty}^{\infty} |h(t)| \,dt = \int_{0}^{\infty} 1 \,dt = \infty$
+
+\textbf{Answer:} Unstable (impulse response not absolutely integrable)
+\end{example}
+
+\end{document}

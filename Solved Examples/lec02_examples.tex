@@ -1,0 +1,288 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage{geometry}
+
+\geometry{a4paper, margin=1in}
+
+% Define example environment
+\newenvironment{example}[1]{
+    \begin{trivlist}
+    \item[\textbf{Example:}] #1
+    \vspace{0.5em}
+}{
+    \end{trivlist}
+    \vspace{1em}
+}
+
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{patterns,decorations.pathreplacing}
+
+\title{Lecture 2 Examples}
+\author{Signals and Systems Course}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{example}[1. Fundamental Periodicity of a Continuous-Time Sinusoid]
+\textbf{Problem:}
+Show that $x(t) = A \cos(\omega_0 t + \theta)$ is periodic with fundamental period $T_0 = 2\pi/\omega_0$.
+
+\begin{figure}[H]
+    \centering
+    \input{figures/lec02_examples/sinusoid_periodicity.tex}
+    \caption{A generic plot of the continuous-time sinusoidal signal $x(t) = A \cos(\omega_0 t + \theta)$, illustrating its periodicity.}
+\end{figure}
+
+\textbf{Solution:}
+
+For periodicity: $x(t + T_0) = x(t)$
+
+$$x(t + T_0) = A \cos(\omega_0 (t + T_0) + \theta) = A \cos(\omega_0 t + \omega_0 T_0 + \theta)$$
+
+For $x(t + T_0) = x(t)$: $\omega_0 T_0 = 2\pi k$ for integer $k$
+
+The smallest positive $T_0$ occurs when $k = 1$:
+
+$$T_0 = \frac{2\pi}{\omega_0}$$
+
+\textbf{Answer:} $T_0 = \frac{2\pi}{\omega_0}$
+\end{example}
+
+\vspace{0.5em}
+\hrule
+\vspace{0.5em}
+
+\begin{example}[2. Periodicity of the Sum of Continuous-Time Signals]
+\textbf{Problem:}
+Given:
+\begin{align}
+    x_1(t) &= \sin(10\pi t) \\
+    x_2(t) &= \sin(20\pi t) \\
+    x_3(t) &= \sin(31t)
+\end{align}
+
+Determine if $x_4(t) = x_1(t) + x_2(t)$ and $x_5(t) = x_1(t) + x_3(t)$ are periodic. If periodic, find the fundamental period.
+
+\textbf{Solution:}
+
+\textbf{Fundamental periods:}
+\begin{align}
+T_1 &= \frac{2\pi}{10\pi} = \frac{1}{5} \\
+T_2 &= \frac{2\pi}{20\pi} = \frac{1}{10} \\
+T_3 &= \frac{2\pi}{31}
+\end{align}
+
+\textbf{For $x_4(t) = x_1(t) + x_2(t)$:}
+$$\frac{T_1}{T_2} = \frac{1/5}{1/10} = 2$$
+
+Since the ratio is rational, $x_4(t)$ is periodic with $T_4 = \frac{1}{5}$.
+
+\textbf{For $x_5(t) = x_1(t) + x_3(t)$:}
+$$\frac{T_1}{T_3} = \frac{1/5}{2\pi/31} = \frac{31}{10\pi}$$
+
+Since the ratio is irrational, $x_5(t)$ is not periodic.
+
+\begin{figure}[H]
+    \centering
+    \input{figures/lec02_examples/periodic_sum.tex}
+    \caption{A plot of $x_4(t)$. We can see that $x_1(t)$ (with period $T_1=1/5$) completes one cycle while $x_2(t)$ (with period $T_2=1/10$) completes two cycles. The sum signal $x_4(t)$ repeats every $T_4=1/5$ seconds.}
+    \label{fig:x4}
+\end{figure}
+
+\textbf{Answer:} $x_4(t)$ is periodic with $T_4 = \frac{1}{5}$; $x_5(t)$ is not periodic.
+\end{example}
+
+\vspace{0.5em}
+\hrule
+\vspace{0.5em}
+
+\begin{example}[3. Even and Odd Decomposition of a Triangular Pulse]
+\textbf{Problem:}
+Given the continuous-time signal $x(t)$ shown below, find its even component, $x_e(t)$, and its odd component, $x_o(t)$.
+
+The signal $x(t)$ is a triangular pulse defined mathematically as:
+\[
+x(t) = \begin{cases}
+    t & \text{for } 0 \le t \le 1 \\
+    2-t & \text{for } 1 < t \le 2 \\
+    0 & \text{otherwise}
+\end{cases}
+\]
+
+\begin{figure}[H]
+    \centering
+    \input{figures/lec02_examples/triangular_pulse.tex}
+    \caption{The original triangular pulse signal $x(t)$.}
+    \label{fig:xt}
+\end{figure}
+
+\textbf{Solution:}
+
+Any signal can be decomposed into even and odd components:
+\[ x_e(t) = \frac{1}{2} [x(t) + x(-t)], \quad x_o(t) = \frac{1}{2} [x(t) - x(-t)] \]
+
+\textbf{Step 1: Find $x(-t)$}
+Reflect $x(t)$ about $t=0$: $x(-t)$ exists for $t \in [-2, 0]$.
+
+\begin{figure}[H]
+    \centering
+    \input{figures/lec02_examples/triangular_pulse_reversed.tex}
+    \caption{The time-reversed signal $x(-t)$, obtained by reflecting $x(t)$ about the vertical axis.}
+    \label{fig:x_neg_t}
+\end{figure}
+
+\textbf{Step 2: Calculate $x_e(t)$}
+For $t > 0$: $x_e(t) = \frac{1}{2} x(t)$ (since $x(-t)=0$)
+For $t < 0$: $x_e(t) = \frac{1}{2} x(-t)$ (since $x(t)=0$)
+At $t=0$: $x_e(0) = 0$
+
+\begin{figure}[H]
+    \centering
+    \input{figures/lec02_examples/triangular_pulse_even.tex}
+    \caption{The even component $x_e(t) = \frac{1}{2}[x(t)+x(-t)]$. Note its symmetry about the vertical axis.}
+    \label{fig:xe}
+\end{figure}
+
+\textbf{Step 3: Calculate $x_o(t)$}
+For $t > 0$: $x_o(t) = \frac{1}{2} x(t)$
+For $t < 0$: $x_o(t) = -\frac{1}{2} x(-t)$
+At $t=0$: $x_o(0) = 0$
+
+\begin{figure}[H]
+    \centering
+    \input{figures/lec02_examples/triangular_pulse_odd.tex}
+    \caption{The odd component $x_o(t) = \frac{1}{2}[x(t)-x(-t)]$. Note its anti-symmetry about the vertical axis.}
+    \label{fig:xo}
+\end{figure}
+
+\textbf{Verification:} $x_e(t) + x_o(t) = x(t)$ for all $t$.
+
+\textbf{Answer:} $x_e(t) = \frac{1}{2}[x(t)+x(-t)]$, $x_o(t) = \frac{1}{2}[x(t)-x(-t)]$
+\end{example}
+
+\vspace{0.5em}
+\hrule
+\vspace{0.5em}
+
+\begin{example}[4. Properties of a Finite-Duration Discrete-Time Signal]
+\textbf{Problem:}
+Consider the discrete-time signal $x[n]$ defined as:
+\[
+x[n] = 
+\begin{cases} 
+A, & n = 0, 1, 2 \\
+0, & \text{otherwise}
+\end{cases}
+\]
+where $A$ is a real constant.
+
+Determine the following:
+\begin{enumerate}
+    \item The even and odd parts of $x[n]$, denoted as $x_{ev}[n]$ and $x_{od}[n]$.
+    \item The total energy $E$ and average power $P_{av}$ of $x[n]$.
+\end{enumerate}
+
+\begin{figure}[H]
+    \centering
+    \input{figures/lec02_examples/discrete_signal.tex}
+    \caption{The discrete-time signal $x[n]$ is non-zero only at three points, $n=0, 1, 2$, where it has a constant amplitude $A$.}
+    \label{fig:signal}
+\end{figure}
+
+\textbf{Solution:}
+
+\textbf{Part 1: Even and Odd Parts}
+\[ x_{ev}[n] = \frac{1}{2}(x[n] + x[-n]), \quad x_{od}[n] = \frac{1}{2}(x[n] - x[-n]) \]
+
+For $x[n] = A$ at $n = 0,1,2$ and $x[-n] = A$ at $n = 0,-1,-2$:
+
+\begin{center}
+\begin{tabular}{c|c|c|c|c}
+$n$ & $x[n]$ & $x[-n]$ & $x_{ev}[n]$ & $x_{od}[n]$ \\
+\hline
+-2 & 0 & A & $A/2$ & $-A/2$ \\
+-1 & 0 & A & $A/2$ & $-A/2$ \\
+0 & A & A & $A$ & $0$ \\
+1 & A & 0 & $A/2$ & $A/2$ \\
+2 & A & 0 & $A/2$ & $A/2$ \\
+\end{tabular}
+\end{center}
+\[ x_{ev}[n] = \begin{cases} A, & n=0 \\ A/2, & n = \pm 1, \pm 2 \\ 0, & \text{otherwise} \end{cases} \]
+\[ x_{od}[n] = \begin{cases} A/2, & n = 1, 2 \\ -A/2, & n = -1, -2 \\ 0, & \text{otherwise} \end{cases} \]
+
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}{0.45\textwidth}
+		\centering
+		% Scale to a fixed height of 5cm, width is automatic
+		\resizebox{!}{5cm}{\input{figures/lec02_examples/discrete_signal_even.tex}}
+		\caption{Even component $x_{ev}[n]$}
+	\end{subfigure}\hfill
+	\begin{subfigure}{0.45\textwidth}
+		\centering
+		% Scale to the SAME fixed height
+		\resizebox{!}{5cm}{\input{figures/lec02_examples/discrete_signal_odd.tex}}
+		\caption{Odd component $x_{od}[n]$}
+	\end{subfigure}
+	\caption{Stem plots of the resulting even (left, symmetric) and odd (right, anti-symmetric) components of $x[n]$. Note that $x_{ev}[n] + x_{od}[n] = x[n]$.}
+	\label{fig:evenodd}
+\end{figure}
+
+\textbf{Part 2: Energy and Power}
+\[ E = \sum_{n=0}^{2} |x[n]|^2 = 3A^2 \]
+\[ P_{av} = \lim_{N \to \infty} \frac{3A^2}{2N+1} = 0 \]
+
+\textbf{Answer:} $E = 3A^2$, $P_{av} = 0$ (energy signal)
+\end{example}
+
+\vspace{0.5em}
+\hrule
+\vspace{0.5em}
+
+\begin{example}[5. Properties of the Continuous-Time Unit Impulse Function]
+\textbf{Problem:}
+The problem consists of two parts that investigate key properties of the Dirac delta function.
+
+\begin{enumerate}
+    \item Evaluate the following integral:
+    \[ x(t) = \int_{0}^{\infty} \delta(t - \sigma) \,d\sigma \]
+    
+    \item Show that the time-scaled unit impulse function $\delta(2t)$ is equivalent to:
+    \[ \delta(2t) = \frac{1}{2}\delta(t) \]
+\end{enumerate}
+
+\textbf{Solution:}
+
+\textbf{Part 1:} Let $\tau = t - \sigma$, then $d\tau = -d\sigma$:
+\[ x(t) = \int_{0}^{\infty} \delta(t - \sigma) \,d\sigma = \int_{-\infty}^{t} \delta(\tau) \,d\tau = u(t) \]
+
+\begin{figure}[H]
+\centering
+\input{figures/lec02_examples/unit_step_function.tex}
+\caption{The continuous-time unit step function, $u(t)$. The function is 0 for $t<0$ and 1 for $t>0$.}
+\label{fig:unit_step}
+\end{figure}
+
+\textbf{Part 2:} Model $\delta(t)$ as limit of rectangular pulse $g_T(t)$ with area 1.
+Time scaling: $g_T(2t)$ has width $T/2$ and height $1/T$, so area = $1/2$.
+Therefore: $\delta(2t) = \frac{1}{2}\delta(t)$
+
+\begin{figure}[H]
+\centering
+\input{figures/lec02_examples/rectangular_pulse_illustration.tex}
+\caption{Illustration of the rectangular pulse $g_T(t)$ and its time-scaled version $g_T(2t)$. The scaled pulse is half as wide, and therefore has half the area.}
+\label{fig:rect_pulse}
+\end{figure}
+
+\textbf{Answer:} (1) $u(t)$, (2) $\delta(2t) = \frac{1}{2}\delta(t)$
+\end{example}
+
+\end{document}

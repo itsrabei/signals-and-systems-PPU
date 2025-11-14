@@ -1,0 +1,63 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage{geometry}
+
+\geometry{a4paper, margin=1in}
+
+% Define example environment
+\newenvironment{example}[1]{
+    \begin{trivlist}
+    \item[\textbf{Example:}] #1
+    \vspace{0.5em}
+}{
+    \end{trivlist}
+    \vspace{1em}
+}
+
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{patterns,decorations.pathreplacing}
+
+\title{Lecture 8 Examples}
+\author{Signals and Systems Course}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{example}[1. Fourier Series Coefficients using Linearity Property]
+\textbf{Problem:}
+Find Fourier Series representation for periodic signal $z(t)$ with period $T=1$.
+
+\begin{figure}[H]
+\centering
+\input{figures/lec08_examples/z_t.tex}
+\caption{The periodic signal $z(t)$.}
+\label{fig:z_t}
+\end{figure}
+
+\textbf{Solution:}
+Decompose: $z(t) = \frac{3}{2}x(t) + \frac{1}{2}y(t)$
+
+\begin{figure}[H]
+\centering
+\input{figures/lec08_examples/components.tex}
+\caption{The complex signal $z(t)$ is decomposed into two simpler periodic square waves.}
+\label{fig:components}
+\end{figure}
+
+For $x(t)$ (pulse width $1/4$): $a_k = \frac{\sin(k\pi/4)}{k\pi}$ ($k \neq 0$), $a_0 = \frac{1}{4}$
+For $y(t)$ (pulse width $1/2$): $b_k = \frac{\sin(k\pi/2)}{k\pi}$ ($k \neq 0$), $b_0 = \frac{1}{2}$
+
+Combined: $c_k = \frac{3}{2}a_k + \frac{1}{2}b_k$
+
+\textbf{Answer:} $c_k = \begin{cases} \frac{3}{2k\pi}\sin(k\pi/4) + \frac{1}{2k\pi}\sin(k\pi/2) & k \neq 0 \\ \frac{5}{8} & k=0 \end{cases}$
+\end{example}
+
+\end{document}

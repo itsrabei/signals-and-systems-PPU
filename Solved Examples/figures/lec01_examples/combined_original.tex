@@ -1,0 +1,50 @@
+\begin{tikzpicture}
+	\begin{axis}[
+		% Set the overall style
+		width=12cm,
+		height=7cm,
+		% Title with the formal piecewise definition
+		title={Continuous-Time Signal $x(t) = 
+			\begin{cases} 
+				1, & -1 \le t \le 0 \\
+				1 - 0.5t, & 0 < t \le 2 \\
+				0, & \text{otherwise} 
+			\end{cases}$
+		},
+		% Axis labels
+		xlabel={$t$},
+		ylabel={$x(t)$},
+		% Position axes at the origin
+		axis lines=middle,
+		% Set axis limits for good spacing
+		xmin=-2.5, xmax=3.5,
+		ymin=0, ymax=1.5,
+		% Disable default ticks to add custom ones at key points
+		xtick=\empty,
+		ytick=\empty,
+		% --- CORRECTED PART ---
+		% Add ticks at key points
+		extra x ticks={-1, 0, 2},
+		% Provide labels, leaving the label for '0' empty
+		extra x tick labels={$-1$,, $2$},
+		extra y ticks={1},
+		% --- END CORRECTION ---
+		% Add a grid
+		grid=major,
+		grid style={line width=.1pt, draw=gray!30},
+		]
+		
+		% Draw the entire signal shape using axis coordinates for precision
+		\draw[blue, very thick]
+		(axis cs:-2.5, 0) -- (axis cs:-1, 0) % Zero before t=-1
+		-- (axis cs:-1, 1)                   % Vertical jump at t=-1
+		-- (axis cs:0, 1)                    % Constant value of 1
+		-- (axis cs:2, 0)                    % Ramp down to zero
+		-- (axis cs:3.5, 0);                 % Zero after t=2
+		
+		% Add labels for the function segments
+		\node[above] at (axis cs:-0.5, 1) {$1$};
+		\node[above, rotate=-26.5] at (axis cs:1, 0.5) {$1 - 0.5t$};
+		
+	\end{axis}
+\end{tikzpicture}

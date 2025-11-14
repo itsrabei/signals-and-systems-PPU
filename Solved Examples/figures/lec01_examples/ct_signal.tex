@@ -1,0 +1,44 @@
+\begin{tikzpicture}
+	\begin{axis}[
+		% Set the overall style
+		width=12cm,
+		height=7cm,
+		% Axis labels
+		xlabel={$t$},
+		ylabel={$x(t)$},
+		% Title with the formal definition
+		title={Continuous-Time Signal: $x(t) = 
+			\begin{cases} 
+				A(t-1), & 1 \le t < 2 \\ 
+				0, & \text{otherwise} 
+			\end{cases}$
+		},
+		% Set axis limits
+		xmin=-0.5, xmax=3.5,
+		ymin=0, ymax=1.2,
+		% Position axes at the origin
+		axis lines=middle,
+		% Disable default ticks to add custom ones
+		xtick=\empty,
+		ytick=\empty,
+		% Add custom tick marks and labels at key points
+		extra x ticks={1, 2},
+		extra y ticks={1},
+		extra y tick labels={$A$},
+		% Style the custom ticks
+		extra tick style={ticklabel style={anchor=north east}},
+		% Add a grid
+		grid=major,
+		grid style={line width=.1pt, draw=gray!30},
+		]
+		
+		% Draw the signal shape using axis coordinates for precision
+		% This single command creates the sharp edge at t=2
+		\draw[blue, very thick]
+		(axis cs:-0.5, 0) -- (axis cs:1, 0)   % Zero before t=1
+		-- (axis cs:2, 1)                     % Ramp up from t=1 to t=2
+		-- (axis cs:2, 0)                     % Discontinuous drop to zero at t=2
+		-- (axis cs:3.5, 0);                  % Zero after t=2
+		
+	\end{axis}
+\end{tikzpicture}

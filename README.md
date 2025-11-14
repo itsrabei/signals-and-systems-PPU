@@ -1,13 +1,14 @@
 # Signals and Systems - PPU
 
-A comprehensive Signals and Systems course repository containing LaTeX lecture notes, interactive MATLAB applications, and auxiliary examples.
+A Signals and Systems course repository containing LaTeX lecture notes, interactive MATLAB applications, and solved examples.
 
 ## Overview
 
 This repository contains complete course materials for a Signals and Systems course, including:
-- **LaTeX lecture series** covering topics from basic signal definitions through advanced frequency-domain analysis
-- **Interactive MATLAB applications** for hands-on learning and visualization
-- **Auxiliary examples** providing additional practice problems and demonstrations
+
+-   **LaTeX lecture series** covering topics from basic signal definitions through advanced frequency-domain analysis
+-   **Interactive MATLAB applications** for hands-on learning and visualization
+-   **Solved examples** providing additional practice problems and worked solutions
 
 All lectures are written in LaTeX with TikZ/PGFPlots figures for high-quality mathematical typesetting and visualizations.
 
@@ -15,60 +16,68 @@ All lectures are written in LaTeX with TikZ/PGFPlots figures for high-quality ma
 
 ```
 signals-and-systems-PPU/
-├── README.md                  # This file
-├── LICENSE                    # License file (CC BY-NC-SA 4.0)
-├── .gitignore                 # Git ignore rules
-├── GITHUB_SETUP_GUIDE.md     # Complete setup guide
-├── lectures/                  # LaTeX lecture notes
-│   ├── README.md             # Lecture-specific documentation
-│   ├── signals-preamble.tex
-│   ├── lecture_template.tex
-│   ├── LECTURE_CONVENTIONS.md
+├── README.md                      # This file
+├── LICENSE                        # License file (CC BY-NC-SA 4.0)
+├── .gitignore                     # Git ignore rules
+├── Lectures/                      # LaTeX lecture notes
+│   ├── README.md                  # Lecture-specific documentation
+│   ├── signals-preamble.tex       # Shared LaTeX preamble
+│   ├── lecture_template.tex       # Template for new lectures
+│   ├── LECTURE_CONVENTIONS.md     # Style guide and conventions
 │   ├── lec01.tex through lec19.tex
-│   └── figures/              # Figure source files
-├── matlab-apps/              # Interactive MATLAB applications
-└── examples/                 # Auxiliary examples and practice problems
+│   └── figures/                   # Figure source files organized by lecture
+├── Interactive Matlab Apps/       # Interactive MATLAB applications
+│   ├── lec01/                     # Applications for Lecture 1
+│   ├── lec02/                     # Applications for Lecture 2
+│   └── ...                        # Additional lecture-specific applications
+└── Solved Examples/               # Solved examples and practice problems
+    ├── lec01_examples.tex         # Examples for Lecture 1
+    ├── lec02_examples.tex         # Examples for Lecture 2
+    └── ...                        # Additional lecture-specific examples
 ```
 
 ## Quick Start
 
 ### Lectures
 
-See the [lectures/README.md](lectures/README.md) for detailed instructions on compiling and using the lecture notes.
+See the <Lectures/README.md> for detailed instructions on compiling and using the lecture notes.
 
 ### MATLAB Applications
 
-Interactive MATLAB applications will be added to the `matlab-apps/` directory.
+Interactive MATLAB applications are organized by lecture in the `Interactive Matlab Apps/` directory. Each application is designed to demonstrate key concepts from the corresponding lecture. Applications include interactive signal generators, convolution simulators, Fourier series analyzers, and spectral analysis tools.
 
-### Examples
+See the [Interactive Matlab Apps/README.md](Interactive Matlab Apps/README.md) for detailed information about available applications and usage instructions.
 
-Additional practice problems and worked examples will be added to the `examples/` directory.
+### Solved Examples
+
+Worked examples and practice problems are provided in the `Solved Examples/` directory, organized by lecture number. Each example file includes step-by-step solutions with accompanying figures.
+
+See the [Solved Examples/README.md](Solved Examples/README.md) for compilation instructions and content overview.
 
 ## License
 
 This work is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/) (CC BY-NC-SA 4.0).
 
 This means you are free to:
-- **Share** — copy and redistribute the material in any medium or format
-- **Adapt** — remix, transform, and build upon the material
+
+-   **Share** — copy and redistribute the material in any medium or format
+-   **Adapt** — remix, transform, and build upon the material
 
 Under the following terms:
-- **Attribution** — You must give appropriate credit, provide a link to the license, and indicate if changes were made
-- **NonCommercial** — You may not use the material for commercial purposes
-- **ShareAlike** — If you remix, transform, or build upon the material, you must distribute your contributions under the same license
 
-**Note:** Please verify with PPU administration that this license aligns with university policies regarding faculty-created educational materials.
+-   **Attribution** — You must give appropriate credit, provide a link to the license, and indicate if changes were made
+-   **NonCommercial** — You may not use the material for commercial purposes
+-   **ShareAlike** — If you remix, transform, or build upon the material, you must distribute your contributions under the same license
 
 ## Authors
 
-- **Dr. Ghandi Manasra**
-- **Ahmed Rabei**
+-   **Dr. Ghandi Manasra**
+-   **Ahmed Rabei**
 
 ## Contact
 
-[Add contact information if desired]
+itstefo@gmail.com
 
----
+***
 
-**Note**: For detailed setup instructions, see `GITHUB_SETUP_GUIDE.md`. For lecture compilation instructions, see `lectures/README.md`.
-
+**Note**: For lecture compilation instructions, see <Lectures/README.md>.
